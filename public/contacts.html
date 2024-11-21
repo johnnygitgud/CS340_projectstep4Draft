@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Contacts</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .form-label {
+            color: white; /* Change label text color to white for better contrast */
+        }
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .logout-button {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-opaque">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white logout-button" href="adminIndex.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="users.html">Users</a></li>
+                <li class="breadcrumb-item"><a href="contacts.html">Contacts</a></li>
+                <li class="breadcrumb-item"><a href="messages.html">Messages</a></li>
+                <li class="breadcrumb-item"><a href="encryptionKeys.html">Encryption Keys</a></li>
+            </ol>
+        </nav>
+        <h1 class="text-white">Manage Contacts</h1>
+        
+        <!-- Create Contact -->
+        <div class="form-container mb-4">
+            <form id="createContactForm">
+                <h3 class="text-white">Create Contact</h3>
+                <div class="mb-3">
+                    <label for="userID" class="form-label">User ID:</label>
+                    <input type="number" id="userID" name="userID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contactEmail" class="form-label">Contact Email:</label>
+                    <input type="email" id="contactEmail" name="contactEmail" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Contact</button>
+            </form>
+        </div>
+        
+        <!-- Read Contacts -->
+        <div class="form-container mb-4">
+            <h3 class="text-white">Read Contacts</h3>
+            <button class="btn btn-secondary mb-3" onclick="readContacts()">Read All Contacts</button>
+            <div id="contactsList" class="text-white"></div>
+        </div>
+        
+        <!-- Update Contact -->
+        <div class="form-container mb-4">
+            <form id="updateContactForm">
+                <h3 class="text-white">Update Contact</h3>
+                <div class="mb-3">
+                    <label for="contactID" class="form-label">Contact ID:</label>
+                    <input type="number" id="contactID" name="contactID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newContactEmail" class="form-label">New Contact Email:</label>
+                    <input type="email" id="newContactEmail" name="contactEmail" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Contact</button>
+            </form>
+        </div>
+        
+        <!-- Delete Contact -->
+        <div class="form-container mb-4">
+            <form id="deleteContactForm">
+                <h3 class="text-white">Delete Contact</h3>
+                <div class="mb-3">
+                    <label for="deleteContactID" class="form-label">Contact ID:</label>
+                    <input type="number" id="deleteContactID" name="contactID" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Delete Contact</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simulate CRUD operations with alerts
+        document.getElementById('createContactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Contact created successfully!');
+        });
+
+        function readContacts() {
+            const contacts = [
+                { contactID: 1, userID: 1, contactEmail: 'contact1@example.com', dateAdded: '2023-01-01' },
+                { contactID: 2, userID: 2, contactEmail: 'contact2@example.com', dateAdded: '2023-01-02' }
+            ];
+            let contactsList = document.getElementById('contactsList');
+            contactsList.innerHTML = '<ul>' + contacts.map(contact => `<li>${contact.contactEmail} (Added: ${contact.dateAdded})</li>`).join('') + '</ul>';
+        }
+
+        document.getElementById('updateContactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Contact updated successfully!');
+        });
+
+        document.getElementById('deleteContactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Contact deleted successfully!');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

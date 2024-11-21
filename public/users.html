@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .form-label {
+            color: white; /* Change label text color to white for better contrast */
+        }
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .logout-button {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-opaque">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white logout-button" href="adminIndex.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="users.html">Users</a></li>
+                <li class="breadcrumb-item"><a href="contacts.html">Contacts</a></li>
+                <li class="breadcrumb-item"><a href="messages.html">Messages</a></li>
+                <li class="breadcrumb-item"><a href="encryptionKeys.html">Encryption Keys</a></li>
+            </ol>
+        </nav>
+        <h1 class="text-white">Manage Users</h1>
+        
+        <!-- Create User -->
+        <div class="form-container mb-4">
+            <form id="createUserForm">
+                <h3 class="text-white">Create User</h3>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create User</button>
+            </form>
+        </div>
+        
+        <!-- Read Users -->
+        <div class="form-container mb-4">
+            <h3 class="text-white">Read Users</h3>
+            <button class="btn btn-secondary mb-3" onclick="readUsers()">Read All Users</button>
+            <div id="usersList" class="text-white"></div>
+        </div>
+        
+        <!-- Update User -->
+        <div class="form-container mb-4">
+            <form id="updateUserForm">
+                <h3 class="text-white">Update User</h3>
+                <div class="mb-3">
+                    <label for="userID" class="form-label">User ID:</label>
+                    <input type="number" id="userID" name="userID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newEmail" class="form-label">New Email:</label>
+                    <input type="email" id="newEmail" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newPassword" class="form-label">New Password:</label>
+                    <input type="password" id="newPassword" name="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update User</button>
+            </form>
+        </div>
+        
+        <!-- Delete User -->
+        <div class="form-container mb-4">
+            <form id="deleteUserForm">
+                <h3 class="text-white">Delete User</h3>
+                <div class="mb-3">
+                    <label for="deleteUserID" class="form-label">User ID:</label>
+                    <input type="number" id="deleteUserID" name="userID" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Delete User</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simulate CRUD operations with alerts
+        document.getElementById('createUserForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('User created successfully!');
+        });
+
+        function readUsers() {
+            const users = [
+                { userID: 1, email: 'user1@example.com', dateJoined: '2023-01-01' },
+                { userID: 2, email: 'user2@example.com', dateJoined: '2023-01-02' }
+            ];
+            let usersList = document.getElementById('usersList');
+            usersList.innerHTML = '<ul>' + users.map(user => `<li>${user.email} (Joined: ${user.dateJoined})</li>`).join('') + '</ul>';
+        }
+
+        document.getElementById('updateUserForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('User updated successfully!');
+        });
+
+        document.getElementById('deleteUserForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('User deleted successfully!');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

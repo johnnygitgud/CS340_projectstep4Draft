@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Encryption Keys</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .form-label {
+            color: white; /* Change label text color to white for better contrast */
+        }
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background for better readability */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .logout-button {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-opaque">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white logout-button" href="adminIndex.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="users.html">Users</a></li>
+                <li class="breadcrumb-item"><a href="contacts.html">Contacts</a></li>
+                <li class="breadcrumb-item"><a href="messages.html">Messages</a></li>
+                <li class="breadcrumb-item"><a href="encryptionKeys.html">Encryption Keys</a></li>
+            </ol>
+        </nav>
+        <h1 class="text-white">Manage Encryption Keys</h1>
+        
+        <!-- Create Encryption Key -->
+        <div class="form-container mb-4">
+            <form id="createKeyForm">
+                <h3 class="text-white">Create Encryption Key</h3>
+                <div class="mb-3">
+                    <label for="userID" class="form-label">User ID:</label>
+                    <input type="number" id="userID" name="userID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="encryptionKey" class="form-label">Encryption Key:</label>
+                    <input type="text" id="encryptionKey" name="encryptionKey" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Key</button>
+            </form>
+        </div>
+        
+        <!-- Read Encryption Keys -->
+        <div class="form-container mb-4">
+            <h3 class="text-white">Read Encryption Keys</h3>
+            <button class="btn btn-secondary mb-3" onclick="readKeys()">Read All Keys</button>
+            <div id="keysList" class="text-white"></div>
+        </div>
+        
+        <!-- Update Encryption Key -->
+        <div class="form-container mb-4">
+            <form id="updateKeyForm">
+                <h3 class="text-white">Update Encryption Key</h3>
+                <div class="mb-3">
+                    <label for="keyID" class="form-label">Key ID:</label>
+                    <input type="number" id="keyID" name="keyID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="newEncryptionKey" class="form-label">New Encryption Key:</label>
+                    <input type="text" id="newEncryptionKey" name="encryptionKey" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Key</button>
+            </form>
+        </div>
+        
+        <!-- Delete Encryption Key -->
+        <div class="form-container mb-4">
+            <form id="deleteKeyForm">
+                <h3 class="text-white">Delete Encryption Key</h3>
+                <div class="mb-3">
+                    <label for="deleteKeyID" class="form-label">Key ID:</label>
+                    <input type="number" id="deleteKeyID" name="keyID" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-danger">Delete Key</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Simulate CRUD operations with alerts
+        document.getElementById('createKeyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Encryption key created successfully!');
+        });
+
+        function readKeys() {
+            const keys = [
+                { keyID: 1, userID: 1, encryptionKey: 'key1', keyCreated: '2023-01-01' },
+                { keyID: 2, userID: 2, encryptionKey: 'key2', keyCreated: '2023-01-02' }
+            ];
+            let keysList = document.getElementById('keysList');
+            keysList.innerHTML = '<ul>' + keys.map(key => `<li>${key.encryptionKey} (Created: ${key.keyCreated})</li>`).join('') + '</ul>';
+        }
+
+        document.getElementById('updateKeyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Encryption key updated successfully!');
+        });
+
+        document.getElementById('deleteKeyForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Encryption key deleted successfully!');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
